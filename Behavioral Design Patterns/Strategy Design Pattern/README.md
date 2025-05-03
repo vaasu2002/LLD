@@ -12,6 +12,7 @@ interface PaymentStrategy{
     public void processPayment();
 }
 
+// public class should be declared only with their sepearete file
 class CreditCardPayment implements PaymentStrategy{
     public void processPayment(){
         System.out.println("Processing payment using credit card!!");
