@@ -11,7 +11,7 @@ public:
     Database(const Database&) = delete;
     Database& operator=(const Database&) = delete;
     static Database& getInstance() {
-        lock_guard lock(mtx);
+        lock_guard lock(mtx); // aquiring lock
         if (!instance) {
             instance = new Database();
         }
@@ -19,6 +19,7 @@ public:
     }
 };
 
+// Initialization outside the class
 Database* Database::instance = nullptr;
 mutex Database::mtx;
 
