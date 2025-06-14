@@ -9,6 +9,8 @@ Ensures that class has only one instance and not multiple instances **throughtou
 - Delete assignmnet operator(=)
 - **Database& db = Database::getInstance()** USE REFERENCE BIND ELSE IT WILL INVOKE COPY CONSTRUCTOR
 Eager Loading (Thread Safe)
+- **Eager loading is not memory efficient, as the instance will be there in memory even if we don't need it**
+    - Using mutex we can use a thread-safe lazy loading but >=c++ 11 local static itself is thread safe
 ```cpp
 class Database{
 public:
