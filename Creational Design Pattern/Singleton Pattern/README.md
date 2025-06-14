@@ -1,16 +1,16 @@
 # Singleton Pattern
-Ensures that class has only one instance and not multiple instances **throughtout application/services**
+Ensures that the class has only one instance and not multiple instances **throughout the application/services**
 - Single Source of truth (A global instance) for different services
 - Example-> Database, Logger, Queue, Analytics
 
 ##### NOTE->
-- Make default constructor private
+- Make the default constructor private
 - Delete copy constructor
-- Delete assignmnet operator(=)
+- Delete assignment operator(=)
 - **Database& db = Database::getInstance()** USE REFERENCE BIND ELSE IT WILL INVOKE COPY CONSTRUCTOR
 Eager Loading (Thread Safe)
-- **Eager loading is not memory efficient, as the instance will be there in memory even if we don't need it**
-    - Using mutex we can use a thread-safe lazy loading but >=c++ 11 local static itself is thread safe
+- **Eager loading is not memory efficient, as the instance will be there in memory even if we don't need it.**
+    - Using mutex, we can use a thread-safe lazy loading, but >= C++ 1,1, local static itself is thread safe
 ```cpp
 class Database{
 public:
@@ -22,14 +22,14 @@ public:
         return db;
     }
 
-    // Deleting copy constructor and assignment opeator
+    // Deleting copy constructor and assignment operator
     Database(const Database& db) = delete;
     Database& operator=(const Database&) = delete; 
 private:
     Database() = default;
 };
-// actual definition and construction of the static member happens here.
-Database Database::db;
+//Actual definition and construction of the static member happen here.
+Database Database::db; // Initialization outside the class
 ```
 
 Lazy Loading
@@ -42,7 +42,7 @@ public:
         return db;
     }
 
-    // Deleting copy constructor and assignment opeator
+    // Deleting copy constructor and assignment operator
     Database(const Database& db) = delete;
     Database& operator=(const Database&) = delete; 
 private:
